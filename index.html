@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LightPDF - Free Online PDF Tools</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .gradient-purple {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        }
+        .gradient-blue {
+            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mr-2">
+                            <i class="fas fa-file-pdf text-white text-sm"></i>
+                        </div>
+                        <span class="text-xl font-bold text-gray-900">LightPDF</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">PDF Tools</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">AI Tools</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">OCR</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">Pricing</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">Windows</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">Mac</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">Help</a>
+                </nav>
+
+                <div class="hidden md:flex items-center space-x-4">
+                    <button class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">Log In</button>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                        Sign Up
+                    </button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 md:hidden">
+            <div class="px-4 py-6">
+                <button id="close-mobile-menu" class="absolute top-4 right-4 text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+                <nav class="mt-8 space-y-4">
+                    <a href="#" class="block text-gray-700 hover:text-blue-600 py-2">PDF Tools</a>
+                    <a href="#" class="block text-gray-700 hover:text-blue-600 py-2">AI Tools</a>
+                    <a href="#" class="block text-gray-700 hover:text-blue-600 py-2">OCR</a>
+                    <a href="#" class="block text-gray-700 hover:text-blue-600 py-2">Pricing</a>
+                    <a href="#" class="block text-gray-700 hover:text-blue-600 py-2">Windows</a>
+                    <a href="#" class="block text-gray-700 hover:text-blue-600 py-2">Mac</a>
+                    <a href="#" class="block text-gray-700 hover:text-blue-600 py-2">Help</a>
+                    <div class="border-t border-gray-200 mt-4 pt-4">
+                        <button class="block w-full text-left text-gray-700 hover:text-blue-600 py-2">Log In</button>
+                        <button class="block w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg mt-2 text-center">
+                            Sign Up
+                        </button>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+                    All-in-One Free PDF Tools
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                    LightPDF provides free online PDF tools to help you easily edit, convert, OCR, sign, and compress PDF files.
+                </p>
+
+                <!-- Search Bar -->
+                <div class="max-w-2xl mx-auto mb-12">
+                    <div class="relative">
+                        <input type="text" placeholder="Search for PDF tools" class="w-full px-6 py-4 text-lg border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <button class="absolute right-2 top-2 bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hero Image -->
+                <div class="relative">
+                    <div class="floating-animation">
+                        <img src="https://via.placeholder.com/800x400/4F46E5/FFFFFF?text=PDF+Tools+Interface" alt="PDF Tools Interface" class="mx-auto rounded-lg shadow-2xl">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Tools Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Popular Tools</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- PDF to Word -->
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-file-word text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900">PDF to Word</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">Convert PDF to editable Word documents while preserving the original layout and formatting.</p>
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-colors">
+                        Try Now
+                    </button>
+                </div>
+
+                <!-- PDF to Excel -->
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-file-excel text-green-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900">PDF to Excel</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">Convert PDF tables to editable Excel spreadsheets with high accuracy.</p>
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-colors">
+                        Try Now
+                    </button>
+                </div>
+
+                <!-- PDF to PPT -->
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-file-powerpoint text-orange-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900">PDF to PPT</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">Convert PDF to PowerPoint presentations while maintaining the original design.</p>
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-colors">
+                        Try Now
+                    </button>
+                </div>
+
+                <!-- Word to PDF -->
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-file-pdf text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900">Word to PDF</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">Convert Word documents to PDF format while preserving the original layout.</p>
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-colors">
+                        Try Now
+                    </button>
+                </div>
+
+                <!-- Excel to PDF -->
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-file-pdf text-green-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900">Excel to PDF</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">Convert Excel spreadsheets to PDF format with perfect formatting.</p>
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-colors">
+                        Try Now
+                    </button>
+                </div>
+
+                <!-- PPT to PDF -->
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-file-pdf text-orange-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900">PPT to PDF</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">Convert PowerPoint presentations to PDF format while maintaining the original design.</p>
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-colors">
+                        Try Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- All PDF Tools Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">All PDF Tools</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Convert from PDF -->
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Convert from PDF</h3>
+                    <div class="space-y-3">
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 py-2">
+                            <i class="fas fa-file-word text-blue-600 mr-3"></i>
+                            PDF to Word
+                        </a>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 py-2">
+                            <i class="fas fa-file-excel text-green-600 mr-3"></i>
+                            PDF to Excel
+                        </a>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 py-2">
+                            <i class="fas fa-file-powerpoint text-orange-600 mr-3"></i>
+                            PDF to PPT
+                        </a>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 py-2">
+                            <i class="fas fa-file-image text-purple-600 mr-3"></i>
+                            PDF to JPG
+                        </a>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 py-2">
+                            <i class="fas fa-file-alt text-yellow-600 mr-3"></i>
+                            PDF to TXT
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Convert to PDF -->
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Convert to PDF</h3>
+                    <div class="space-y-3">
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 py-2">
+                            <i class="fas fa-file-pdf text-blue-600 mr-3"></i>
+                            Word to PDF
+                        </a>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 py-2">
+                            <i class="fas fa-file-pdf text-green-600 mr-3"></i>
+                            Excel to PDF
+                        </a>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 py-2">
+                            <i class="fas fa-file-pdf text-orange-600 mr-3"></i>
+                            PPT to PDF
+                        </a>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 py-2">
+                            <i class="fas fa-file-pdf text-pink-600 mr-3"></i>
+                            JPG to PDF
+                        </a>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 py-2">
+                            <i class="fas fa-file-pdf text-gray-600 mr-3"></i>
+                            TXT to PDF
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PDF OCR -->
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">PDF OCR</h3>
+                    <div class="space-y-3">
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 py-2">
+                            <i class="fas fa-eye text-blue-600 mr-3"></i>
+                            PDF OCR
+                        </a>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 py-2">
+                            <i class="fas fa-file-word text-blue-600 mr-3"></i>
+                            OCR PDF to Word
+                        </a>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 py-2">
+                            <i class="fas fa-file-excel text-green-600 mr-3"></i>
+                            OCR PDF to Excel
+                        </a>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 py-2">
+                            <i class="fas fa-file-powerpoint text-orange-600 mr-3"></i>
+                            OCR PDF to PPT
+                        </a>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 py-2">
+                            <i class="fas fa-file-alt text-yellow-600 mr-3"></i>
+                            OCR PDF to TXT
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PDF Edit -->
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">PDF Edit</h3>
+                    <div class="space-y-3">
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 py-2">
+                            <i class="fas fa-edit text-blue-600 mr-3"></i>
+                            Edit PDF
+                        </a>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 py-2">
+                            <i class="fas fa-font text-purple-600 mr-3"></i>
+                            Add Text to PDF
+                        </a>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 py-2">
+                            <i class="fas fa-signature text-green-600 mr-3"></i>
+                            Sign PDF
+                        </a>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 py-2">
+                            <i class="fas fa-stamp text-red-600 mr-3"></i>
+                            Add Watermark to PDF
+                        </a>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 py-2">
+                            <i class="fas fa-compress-alt text-gray-600 mr-3"></i>
+                            Compress PDF
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PDF Organize -->
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">PDF Organize</h3>
+                    <div class="space-y-3">
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 py-2">
+                            <i class="fas fa-cut text-blue-600 mr-3"></i>
+                            Split PDF
+                        </a>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 py-2">
+                            <i class="fas fa-layer-group text-green-600 mr-3"></i>
+                            Merge PDF
+                        </a>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 py-2">
+                            <i class="fas fa-sort-numeric-up text-orange-600 mr-3"></i>
+                            Organize PDF
+                        </a>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 py-2">
+                            <i class="fas fa-rotate text-purple-600 mr-3"></i>
+                            Rotate PDF
+                        </a>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 py-2">
+                            <i class="fas fa-unlock text-yellow-600 mr-3"></i>
+                            Unlock PDF
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PDF View & Read -->
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">PDF View & Read</h3>
+                    <div class="space-y-3">
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 py-2">
+                            <i class="fas fa-search text-blue-600 mr-3"></i>
+                            PDF Reader
+                        </a>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 py-2">
+                            <i class="fas fa-th-large text-green-600 mr-3"></i>
+                            PDF Thumbnail
+                        </a>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 py-2">
+                            <i class="fas fa-file-invoice text-orange-600 mr-3"></i>
+                            PDF Invoice
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Tools Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">AI Tools</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- AI PDF Summarizer -->
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-robot text-purple-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900">AI PDF Summarizer</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">Summarize long PDF documents with AI to extract key information quickly.</p>
+                    <button class="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 px-4 rounded-lg font-medium transition-colors">
+                        Try Now
+                    </button>
+                </div>
+
+                <!-- AI PDF Translator -->
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-language text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900">AI PDF Translator</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">Translate PDF documents to multiple languages with AI-powered accuracy.</p>
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-colors">
+                        Try Now
+                    </button>
+                </div>
+
+                <!-- AI PDF Chat -->
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-comments text-green-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900">AI PDF Chat</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">Chat with your PDF documents using AI to get instant answers and insights.</p>
+                    <button class="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-4 rounded-lg font-medium transition-colors">
+                        Try Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Why Choose LightPDF?</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Easy to Use -->
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-mouse-pointer text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Easy to Use</h3>
+                    <p class="text-gray-600">Intuitive interface makes PDF editing and conversion simple for everyone.</p>
+                </div>
+
+                <!-- Fast Processing -->
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-bolt text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Fast Processing</h3>
+                    <p class="text-gray-600">Powerful servers ensure quick processing of your PDF files.</p>
+                </div>
+
+                <!-- Secure -->
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-lock text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Secure</h3>
+                    <p class="text-gray-600">Your files are protected with industry-standard encryption and security.</p>
+                </div>
+
+                <!-- Free -->
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-gift text-orange-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Free</h3>
+                    <p class="text-gray-600">Most tools are completely free to use with no hidden charges.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">What Our Users Say</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">JM</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">John M.</h4>
+                            <p class="text-sm text-gray-600">Marketing Manager</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"LightPDF has become an essential tool in my daily workflow. The PDF to Word conversion is incredibly accurate and saves me hours of work."</p>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">SA</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Sarah A.</h4>
+                            <p class="text-sm text-gray-600">Student</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"As a student, I need to convert PDFs to editable formats all the time. LightPDF makes it so easy and it's completely free!"</p>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">DR</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">David R.</h4>
+                            <p class="text-sm text-gray-600">Freelancer</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"The OCR feature is amazing! I can convert scanned documents to editable text with just a few clicks. Highly recommended!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 gradient-blue">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-white mb-6">Ready to Simplify Your PDF Workflow?</h2>
+            <p class="text-xl text-blue-100 mb-8">Join millions of users who trust LightPDF for their PDF needs.</p>
+            <button class="bg-white hover:bg-gray-100 text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold transition-colors">
+                Get Started for Free
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Logo and Description -->
+                <div class="md:col-span-1">
+                    <div class="flex items-center mb-4">
+                        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mr-2">
+                            <i class="fas fa-file-pdf text-white text-sm"></i>
+                        </div>
+                        <span class="text-xl font-bold">LightPDF</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">Your all-in-one PDF solution for editing, converting, and managing PDF files.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Product -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Product</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">PDF Tools</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">AI Tools</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">OCR</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Pricing</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Windows</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Mac</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Tutorials</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">API Documentation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Affiliate Program</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2023 LightPDF. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        closeMobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
